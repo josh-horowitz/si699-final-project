@@ -52,6 +52,19 @@ function SigninBox({ navigation }) {
             value={password}
           />
         </View>
+        <View style={styles.loginInputContainer}>
+          <TextInput
+            style={styles.loginInputBox}
+            placeholder="confirm password"
+            autoCapitalize="none"
+            spellCheck={false}
+            secureTextEntry={true}
+            onChangeText={(text) => setPassword(text)}
+            value={password}
+          />
+        </View>
+
+        
       </View>
       <View style={styles.loginRow}>
         <Button

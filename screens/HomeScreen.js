@@ -38,29 +38,18 @@ function HomeScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={{ padding: "5%" }}>
-        Hi, {currentUser?.displayName}! Say hello to your little friends:
-      </Text>
-      <View style={styles.listContainer}>
-        <FlatList
-          data={users.filter((u) => u.uid !== currentUser?.uid)}
-          renderItem={({ item }) => {
-            return (
-              <View>
-                <TouchableOpacity
-                  onPress={async () => {
-                    await subscribeToChat(currentUser.uid, item.uid, dispatch);
-                    navigation.navigate("Chat");
-                  }}
-                >
-                  <Text>{item.displayName}</Text>
-                </TouchableOpacity>
-              </View>
-            );
-          }}
-          keyExtractor={(item) => item.uid}
-        />
+      <View style={styles.header}>
+        <Text>Battleship</Text>
       </View>
+
+      <View style={styles.profile_pic}></View><Text>Username</Text>
+
+      <View style={styles.listContainer}>
+    <Text>Welcome "username"!</Text>
+    <TouchableOpacity><Text>Create a new match</Text></TouchableOpacity>
+    <TouchableOpacity><Text>Join a new match</Text></TouchableOpacity>
+    <TouchableOpacity><Text>Resume a match in progress</Text></TouchableOpacity>
+</View>
       <Button
         onPress={async () => {
           navigation.navigate("Login");

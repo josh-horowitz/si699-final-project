@@ -66,9 +66,6 @@ function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "pink",
   },
   listContainer: {
     flex: 0.3,

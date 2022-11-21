@@ -17,6 +17,8 @@ import {
 
 const auth = getFBAuth();
 
+//I'm thinking that this screen could have a circle profile type button in the top right corner and then the three buttons
+//from our mockup, but with no onClick just yet.
 function HomeScreen({ navigation }) {
   const users = useSelector((state) => {
     console.log("useSelector, state:", state);

@@ -21,7 +21,7 @@ function SigninBox({ navigation }) {
 
   return (
     <View style={styles.loginContainer}>
-      <Text style={styles.loginHeaderText}>Sign In</Text>
+      <Text style={styles.loginHeaderText}>Sign In to Battleship!</Text>
       <View style={styles.loginRow}>
         <View style={styles.loginLabelContainer}>
           <Text style={styles.loginLabelText}>Email: </Text>
@@ -52,19 +52,6 @@ function SigninBox({ navigation }) {
             value={password}
           />
         </View>
-        <View style={styles.loginInputContainer}>
-          <TextInput
-            style={styles.loginInputBox}
-            placeholder="confirm password"
-            autoCapitalize="none"
-            spellCheck={false}
-            secureTextEntry={true}
-            onChangeText={(text) => setPassword(text)}
-            value={password}
-          />
-        </View>
-
-        
       </View>
       <View style={styles.loginRow}>
         <Button
@@ -86,12 +73,13 @@ function SigninBox({ navigation }) {
 
 function SignupBox({ navigation }) {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [password1, setPassword1] = useState("");
+  const [password2, setPassword2] = useState("");
   const [displayName, setDisplayName] = useState("");
 
   return (
     <View style={styles.loginContainer}>
-      <Text style={styles.loginHeaderText}>Sign Up</Text>
+      <Text style={styles.loginHeaderText}>Sign Up for Battleship!</Text>
       <View style={styles.loginRow}>
         <View style={styles.loginLabelContainer}>
           <Text style={styles.loginLabelText}>Display Name: </Text>
@@ -125,7 +113,7 @@ function SignupBox({ navigation }) {
 
       <View style={styles.loginRow}>
         <View style={styles.loginLabelContainer}>
-          <Text style={styles.loginLabelText}>Password: </Text>
+          <Text style={styles.loginLabelText}>Enter Password: </Text>
         </View>
         <View style={styles.loginInputContainer}>
           <TextInput
@@ -134,25 +122,46 @@ function SignupBox({ navigation }) {
             autoCapitalize="none"
             spellCheck={false}
             secureTextEntry={true}
-            onChangeText={(text) => setPassword(text)}
-            value={password}
+            onChangeText={(text) => setPassword1(text)}
+            value={password1}
+          />
+        </View>
+      </View>
+      <View style={styles.loginRow}>
+        <View style={styles.loginLabelContainer}>
+          <Text style={styles.loginLabelText}>Confirm Password: </Text>
+        </View>
+        <View style={styles.loginInputContainer}>
+          <TextInput
+            style={styles.loginInputBox}
+            placeholder="enter password"
+            autoCapitalize="none"
+            spellCheck={false}
+            secureTextEntry={true}
+            onChangeText={(text) => setPassword2(text)}
+            value={password2}
           />
         </View>
       </View>
       <View style={styles.loginRow}>
         <Button
+          disabled={
+            password1 !== password2 && password1 !== "" && password2 !== ""
+          }
           onPress={async () => {
             try {
               const userCred = await createUserWithEmailAndPassword(
                 getFBAuth(),
                 email,
-                password
+                password1
               );
-
+              const newDate = new Date();
               saveAndDispatch(
                 createUser({
                   uid: userCred.user.uid,
                   displayName: displayName,
+                  createdDate: newDate,
+                  lastDayActive: newDate,
                 })
               );
             } catch (error) {

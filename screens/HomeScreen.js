@@ -8,12 +8,7 @@ import {
 } from "react-native";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  subscribeToUsers,
-  getFBAuth,
-  signOutFB,
-  subscribeToChat,
-} from "../data/DB";
+import { subscribeToUsers, getFBAuth, signOutFB } from "../data/DB";
 import { withOrientation } from "react-navigation";
 
 const auth = getFBAuth();
@@ -40,30 +35,41 @@ function HomeScreen({ navigation }) {
   return (
     // Header
     <View style={styles.container}>
-
       <View style={styles.header}>
         <Text style={styles.headerText}>Battleship</Text>
       </View>
 
-{/* Profile picture + username */}
-    <TouchableOpacity style={styles.profile}  
-    onPress={() => {navigation.navigate("Profile")}}
-    >
-      <View style={styles.profile_pic}></View><Text>Username</Text>
+      {/* Profile picture + username */}
+      <TouchableOpacity
+        style={styles.profile}
+        onPress={() => {
+          navigation.navigate("Profile");
+        }}
+      >
+        <View style={styles.profile_pic}></View>
+        <Text>{currentUser?.displayName}</Text>
       </TouchableOpacity>
 
-      <Text style={styles.welcomeText}>Welcome "username"!</Text>
+      <Text style={styles.welcomeText}>
+        Welcome {currentUser?.displayName}!
+      </Text>
 
-{/* Menu options */}
+      {/* Menu options */}
       <View style={styles.listContainer}>
-    <TouchableOpacity style={styles.menuOption}><Text style={styles.menuOptionText}>Create a new match</Text></TouchableOpacity>
-    <TouchableOpacity style={styles.menuOption}><Text style={styles.menuOptionText}>Join a new match</Text></TouchableOpacity>
-    <TouchableOpacity style={styles.menuOption}><Text style={styles.menuOptionText}>Resume a match in progress</Text></TouchableOpacity>
-</View>
+        <TouchableOpacity style={styles.menuOption}>
+          <Text style={styles.menuOptionText}>Create a new match</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.menuOption}>
+          <Text style={styles.menuOptionText}>Join a new match</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.menuOption}>
+          <Text style={styles.menuOptionText}>Resume a match in progress</Text>
+        </TouchableOpacity>
+      </View>
 
-{/* Sign out */}
+      {/* Sign out */}
       <Button
-      style={styles.signOutButton}
+        style={styles.signOutButton}
         onPress={async () => {
           navigation.navigate("Login");
           signOutFB(auth);
@@ -72,7 +78,6 @@ function HomeScreen({ navigation }) {
         {" "}
         Sign Out{" "}
       </Button>
-
     </View>
   );
 }
@@ -81,18 +86,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-header: { 
-flex: 0.1,
-justifyContent: 'center',
-alignItems: 'center',
-backgroundColor: 'grey',
-padding: '5%',
+  header: {
+    flex: 0.1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "grey",
+    padding: "5%",
   },
-headerText: {
-fontSize: '32px',
-color: 'white',
-padding: '10%',
-fontWeight: 'bold',
+  headerText: {
+    fontSize: "32px",
+    color: "white",
+    padding: "10%",
+    fontWeight: "bold",
   },
   listContainer: {
     flex: 0.5,
@@ -100,46 +105,45 @@ fontWeight: 'bold',
     alignItems: "center",
   },
   profile_pic: {
-    backgroundColor: 'pink',
-    width: '10%',
-    height: '50%',
-    marginLeft: '5%',
-    marginRight: '2%',
-    borderRadius: '100%'
-
+    backgroundColor: "pink",
+    width: "10%",
+    height: "50%",
+    marginLeft: "5%",
+    marginRight: "2%",
+    borderRadius: "100%",
   },
   profile: {
-    flex: .1,
-    display: 'flex',
-    flexWrap: 'nowrap',
-    flexDirection: 'row',
-    justifyContent: 'flexStart',
-    alignItems: 'center',
+    flex: 0.1,
+    display: "flex",
+    flexWrap: "nowrap",
+    flexDirection: "row",
+    justifyContent: "flexStart",
+    alignItems: "center",
   },
   welcomeText: {
-    fontSize: '24px',
-    padding: '5%',
-    textAlign: 'center',
+    fontSize: "24px",
+    padding: "5%",
+    textAlign: "center",
   },
   menuOption: {
-    width: '70%',
-    backgroundColor: 'lightblue',
-    height: '25%',
-    margin: '4%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: "70%",
+    backgroundColor: "lightblue",
+    height: "25%",
+    margin: "4%",
+    justifyContent: "center",
+    alignItems: "center",
   },
   menuOptionText: {
-    fontSize: '18pt',
-    padding: '2%',
-    color: 'black',
+    fontSize: "18pt",
+    padding: "2%",
+    color: "black",
   },
   signOutButton: {
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    width: '100%',
-    marginTop: '10%',
-  }
+    justifyContent: "flex-end",
+    alignItems: "center",
+    width: "100%",
+    marginTop: "10%",
+  },
 });
 
 export default HomeScreen;

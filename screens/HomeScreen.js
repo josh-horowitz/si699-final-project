@@ -14,6 +14,7 @@ import {
   signOutFB,
   subscribeToChat,
 } from "../data/DB";
+import { withOrientation } from "react-navigation";
 
 const auth = getFBAuth();
 
@@ -37,20 +38,32 @@ function HomeScreen({ navigation }) {
   }, []);
 
   return (
+    // Header
     <View style={styles.container}>
+
       <View style={styles.header}>
-        <Text>Battleship</Text>
+        <Text style={styles.headerText}>Battleship</Text>
       </View>
 
+{/* Profile picture + username */}
+    <TouchableOpacity style={styles.profile}  
+    // onPress={() => {navigation.navigate()}}
+    >
       <View style={styles.profile_pic}></View><Text>Username</Text>
+      </TouchableOpacity>
 
+      <Text style={styles.welcomeText}>Welcome "username"!</Text>
+
+{/* Menu options */}
       <View style={styles.listContainer}>
-    <Text>Welcome "username"!</Text>
-    <TouchableOpacity><Text>Create a new match</Text></TouchableOpacity>
-    <TouchableOpacity><Text>Join a new match</Text></TouchableOpacity>
-    <TouchableOpacity><Text>Resume a match in progress</Text></TouchableOpacity>
+    <TouchableOpacity style={styles.menuOption}><Text style={styles.menuOptionText}>Create a new match</Text></TouchableOpacity>
+    <TouchableOpacity style={styles.menuOption}><Text style={styles.menuOptionText}>Join a new match</Text></TouchableOpacity>
+    <TouchableOpacity style={styles.menuOption}><Text style={styles.menuOptionText}>Resume a match in progress</Text></TouchableOpacity>
 </View>
+
+{/* Sign out */}
       <Button
+      style={styles.signOutButton}
         onPress={async () => {
           navigation.navigate("Login");
           signOutFB(auth);
@@ -59,6 +72,7 @@ function HomeScreen({ navigation }) {
         {" "}
         Sign Out{" "}
       </Button>
+
     </View>
   );
 }
@@ -67,11 +81,65 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+header: { 
+flex: 0.1,
+justifyContent: 'center',
+alignItems: 'center',
+backgroundColor: 'grey',
+padding: '5%',
+  },
+headerText: {
+fontSize: '32px',
+color: 'white',
+padding: '10%',
+fontWeight: 'bold',
+  },
   listContainer: {
-    flex: 0.3,
+    flex: 0.5,
     justifyContent: "center",
     alignItems: "center",
   },
+  profile_pic: {
+    backgroundColor: 'pink',
+    width: '10%',
+    height: '50%',
+    marginLeft: '5%',
+    marginRight: '2%',
+    borderRadius: '100%'
+
+  },
+  profile: {
+    flex: .1,
+    display: 'flex',
+    flexWrap: 'nowrap',
+    flexDirection: 'row',
+    justifyContent: 'flexStart',
+    alignItems: 'center',
+  },
+  welcomeText: {
+    fontSize: '24px',
+    padding: '5%',
+    textAlign: 'center',
+  },
+  menuOption: {
+    width: '70%',
+    backgroundColor: 'lightblue',
+    height: '25%',
+    margin: '4%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  menuOptionText: {
+    fontSize: '18pt',
+    padding: '2%',
+    color: 'black',
+  },
+  signOutButton: {
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    width: '100%',
+    flex: 0.1
+  }
 });
 
 export default HomeScreen;

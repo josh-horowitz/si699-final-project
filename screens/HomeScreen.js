@@ -47,9 +47,9 @@ function HomeScreen({ navigation }) {
 
 {/* Profile picture + username */}
     <TouchableOpacity style={styles.profile}  
-    onPress={() => {navigation.navigate(Profile)}}
+    onPress={() => {navigation.navigate("Profile")}}
     >
-      <View style={styles.profile_pic}></View><Text>Username</Text>ß
+      <View style={styles.profile_pic}></View><Text>Username</Text>
       </TouchableOpacity>
 
       <Text style={styles.welcomeText}>Welcome "username"!</Text>
@@ -138,7 +138,7 @@ fontWeight: 'bold',
     justifyContent: 'flex-end',
     alignItems: 'center',
     width: '100%',
-    flex: 0.1
+    marginTop: '10%',
   }
 });
 

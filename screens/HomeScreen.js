@@ -44,6 +44,7 @@ function HomeScreen({ navigation }) {
         style={styles.profile}
         onPress={() => {
           navigation.navigate("Profile");
+          // Pass in current player's username as props
         }}
       >
         <View style={styles.profile_pic}></View>
@@ -62,7 +63,10 @@ function HomeScreen({ navigation }) {
         <TouchableOpacity style={styles.menuOption}>
           <Text style={styles.menuOptionText}>Join a new match</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuOption}>
+        <TouchableOpacity style={styles.menuOption}
+                onPress={() => {
+                  navigation.navigate("ResumeGame");
+                }}>
           <Text style={styles.menuOptionText}>Resume a match in progress</Text>
         </TouchableOpacity>
       </View>

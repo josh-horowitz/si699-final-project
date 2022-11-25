@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { Ionicons } from '@expo/vector-icons'; 
 import { withOrientation } from "react-navigation";
+import {MatchInProgress} from "../components/MatchInProgress";
 
 function ResumeGameScreen({ navigation }) {
 

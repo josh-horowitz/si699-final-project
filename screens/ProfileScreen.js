@@ -10,6 +10,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { withOrientation } from "react-navigation";
 
 function ProfileScreen({ navigation }) {
+  // Add username as props
 
   return(
 <View style={styles.container}>

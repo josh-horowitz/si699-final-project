@@ -10,10 +10,12 @@ import {
 import { Ionicons } from '@expo/vector-icons'; 
 import { withOrientation } from "react-navigation";
 
-export default function MatchInProgress({ navigation }) {
+function MatchInProgress({ navigation }) {
 
     return (
-        <View styles = {styles.matchBox}>
+        <View style={styles.matchBox}>
+
+
         <TouchableOpacity
         style={styles.profile}
         onPress={() => {
@@ -22,11 +24,13 @@ export default function MatchInProgress({ navigation }) {
         }}
       >
         <View style={styles.profile_pic}></View>
-        <Text>{currentUser?.displayName}</Text>
+        <Text>username</Text>
       </TouchableOpacity>
+
       <Text style={styles.turnText}>Your Turn</Text>
+      
       <TouchableOpacity>
-      <Ionicons name="play-outline" style={styles.playButton}></Ionicons>
+      <Ionicons name="play-outline" size='60%' style={styles.playButton}></Ionicons>
       </TouchableOpacity>
 
         </View>
@@ -35,22 +39,35 @@ export default function MatchInProgress({ navigation }) {
 
 const styles = StyleSheet.create({
 matchBox: {
-    flex: 1,
-    border: '1px black solid',
+    borderWidth: '3px',
+    margin: '2%',
     borderRadius: '70%',
 },
 profile: {
-    flex: 0.1,
     display: "flex",
     flexWrap: "nowrap",
     flexDirection: "row",
     justifyContent: "flexStart",
     alignItems: "center",
+    marginLeft: '10%',
+    marginTop: '5%'
   },
 profile_pic: {
     backgroundColor: "pink",
     width: "10%",
-    height: "50%",
+    height: "200%",
     borderRadius: "100%",
+    marginRight: '2%',
   },
+  playButton: {
+position: 'relative',
+left: '80%',
+bottom: '40%',
+  },
+  turnText: {
+marginLeft: '20%',
+top: '35%'
+  }
 })
+
+export default MatchInProgress;

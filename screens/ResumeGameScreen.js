@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { Ionicons } from '@expo/vector-icons'; 
 import { withOrientation } from "react-navigation";
-import {MatchInProgress} from "../components/MatchInProgress";
+import MatchInProgress from "../components/MatchInProgress";
 
 function ResumeGameScreen({ navigation }) {
 
@@ -22,6 +22,10 @@ function ResumeGameScreen({ navigation }) {
   <TouchableOpacity style={styles.backArrow} onPress={() => {navigation.navigate("Home")}}>
   <Ionicons name="arrow-back-outline" size='40%'></Ionicons>
   </TouchableOpacity>
+
+  <Text>Matches In Progress</Text>
+
+  <MatchInProgress></MatchInProgress>
 
   </View>
   )
